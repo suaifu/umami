@@ -10,7 +10,7 @@ RUN npm install -g pnpm
 RUN pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM registry.cn-shanghai.aliyuncs.com/mirror/node:${NODE_IMAGE_VERSION} AS builder
+FROM node:${NODE_IMAGE_VERSION} AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
