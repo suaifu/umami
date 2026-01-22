@@ -20,7 +20,7 @@ ARG BASE_PATH
 
 ENV BASE_PATH=$BASE_PATH
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV DATABASE_URL="postgresql://user:pass@localhost:5432/dummy"
+ENV DATABASE_URL="mysql://user:pass@localhost:3306/dummy"
 
 RUN npm run build-docker
 
@@ -44,7 +44,7 @@ RUN set -x \
 # Script dependencies
 RUN pnpm --allow-build='@prisma/engines' add npm-run-all dotenv chalk semver \
     prisma@${PRISMA_VERSION} \
-    @prisma/adapter-pg@${PRISMA_VERSION}
+    @prisma/client@${PRISMA_VERSION}
 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder /app/prisma ./prisma
