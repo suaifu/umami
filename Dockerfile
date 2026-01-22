@@ -25,7 +25,7 @@ ENV DATABASE_URL="postgresql://user:pass@localhost:5432/dummy"
 RUN npm run build-docker
 
 # Production image, copy all the files and run next
-FROM registry.cn-hangzhou.aliyuncs.com/google_containers/node:${NODE_IMAGE_VERSION} AS deps
+FROM registry.cn-hangzhou.aliyuncs.com/google_containers/node:${NODE_IMAGE_VERSION} AS runner
 WORKDIR /app
 
 ARG PRISMA_VERSION="6.19.0"
